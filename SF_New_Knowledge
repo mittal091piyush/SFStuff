@@ -1,0 +1,59 @@
+CREATING JSON USING CODE
+
+String clientId = 'CL-Id'; 
+String clientPAssword = 'CL-Password';
+
+
+JSONGenerator gen = JSON.createGenerator( TRUE );
+gen.writeStartObject();
+gen.writeStringField( 'clientId', clientId ); // this is JSON field and value 
+gen.writeStringField( 'clientPassword', clientPAssword );  // this is JSON field and value 
+gen.writeEndObject();
+String reqJSON = gen.getAsString();
+
+
+it will create the JSON
+
+{
+clientId : CL-Id,
+clientPassword : CL-Password
+}
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+RECEIVING THE API RESPONSE AS JSON AND THEN IF YOU REQUIRE TO KNOW ONLY ONE OF THE FIELD VALUE
+
+Map<String, String> map = ( Map<String, String> ) JSON.deserialize( res.getBody(), Map<String, String>.class );
+
+--> So, now you don't need to use the parser for getting the value of a field and you can get it by just using the map.get().
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+SWITCH CASE IN SALESFORCE
+
+switch on statusCode
+            {
+                when 200 
+                {
+                    if (JSON.deserializeUntyped(resBody) != null){
+                        system.debug('Success');
+                        getResults = resBody + res.getStatusCode();
+                    }
+                    else{
+                        getResults = res.getStatus()+res.getStatusCode();
+                    }
+                }
+                when 201{
+                    getResults = resBody + res.getStatusCode();
+                }
+                when else 
+                {
+                    getResults = 'Error ' +  res.getStatusCode();
+                }
+            }
+            
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~            
+
+
+
