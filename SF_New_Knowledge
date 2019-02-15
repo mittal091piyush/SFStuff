@@ -54,6 +54,9 @@ switch on statusCode
             }
             
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~            
+HOW TO BREAK THE JSON RESPONSE IN A MAP
 
+Map<String, Object> mp = (Map<String, Object>)JSON.deserializeUntyped(response);
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~            
 
